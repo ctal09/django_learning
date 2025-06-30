@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Return</title>
+</head>
+<body>
+    <p>Form submitted successfully!</p>
+    <p>Data:</p>
+    {% if data %}
+        First Name : {{ data.first_name }}'
+        <br>
+        Last Name : {{ data.last_name }}
+        <br>
+        {% if data.id_name %}
+        
+        ID Name: {{ data.id_name }}
+        <br>
+        {% endif %}
+        Email: {{ data.email }}
+        <br>
+        Address: {{ data.address }}
+        <br>
+        Age : {{ data.age }}
+
+    {% else %}
+        <p>No data to display.</p>
+    {% endif %}
+
+    {% if data.errors %}
+        <p>Errors:</p>
+        <ul>
+            {% for field, errors in data.errors.items %}
+                <li>{{ field }}: {{ errors|join:", " }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <a href="/sen2"><br>Go back to form</a>
+</body>
+</html>

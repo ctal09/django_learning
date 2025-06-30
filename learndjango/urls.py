@@ -17,12 +17,27 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from users.views import *
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', home),
+    path('', home),
     path('user/<int:id>/', username),
     path('user/<int:id>/', include('users.urls')),    
-    path('adduser/', rednder_form),
+    path('form/adduser/', rednder_form),
     path('send/', send),
+    path('sen2/', form2),
+    path('usermodelform/', usermodelform),
+    path('stat/', statictest),
+    path('media/', manage_media),
+    path('', include('crud.urls')),
+    
+    
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    

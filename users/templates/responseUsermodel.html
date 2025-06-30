@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add USer Model</title>
+</head>
+<body>
+
+<!-- {{data}} -->
+
+
+ 
+
+
+   {% if data.first_name %}
+       <p>First Name: {{ data.first_name }}</p>
+       {% if data.errors.first_name %}
+           <p style="color: red;">Error: {{ data.errors.first_name }}</p>
+       {% endif %}
+       <p></p>
+   {% endif %}
+   {% if data.last_name %}
+       <p>Last Name: {{ data.last_name }}</p>
+   {% endif %}
+   {% if data.id_name %}
+       <p>ID Name: {{ data.id_name }}</p>
+   {% endif %}
+   {% if data.email %}
+       <p>Email: {{ data.email }}</p>
+              {% if data.errors.email %}
+           <p style="color: red;">Error: {{ data.errors.email }}</p>
+       {% endif %}
+   {% endif %} 
+   {% if data.address %}
+       <p>Address: {{ data.address }}</p>
+   {% endif %}
+   {% if data.age %}
+       <p>Age: {{ data.age }}</p>
+   {% endif %}
+
+
+</body>
+</html>

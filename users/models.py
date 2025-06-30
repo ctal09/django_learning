@@ -46,8 +46,8 @@ class User(models.Model):
             raise ValidationError("Email is required.")
         if not self.first_name or not self.last_name:
             raise ValidationError("First name and last name are required.")
-        if not self.address:
-            raise ValidationError("Address is required.")
+        # if not self.address:
+        #     raise ValidationError("Address is required.")
     
 class Citizenship(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='citizen')

@@ -4,47 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add User</title>
-</head>
+    </head>
 <body>
-    <form action="" class="form">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button onclick="senddata()">Submit</button>
+    
+    <form method="POST">
+           {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Submit">
     </form>
-   
 </body>
 </html>
-<script>
-senddata = () => {
-    
-    const form = document.querySelector('form');
-    const formData = new FormData(form);
-  
-    
-    fetch('/send/', {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'X-CSRFToken': '{{ csrf_token }}'
-        }
-        
-    })
-    .then(response => {response.json()
-        console.log('Success:', response);
-        if (response.ok) {
-            // Redirect to the home page after successful form submission
-            window.location.href = '/user/32';
-        } else {
-            console.error('Form submission failed:', response.statusText);
-        }
-      
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-
-};
-
-
-
-</script>
