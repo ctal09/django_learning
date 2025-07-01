@@ -38,7 +38,8 @@ def send(request):
                 'first_name': form.cleaned_data['first_name'],
                 'last_name': form.cleaned_data['last_name'],
                 'id_name': form.cleaned_data['id_name'],
-                'email': form.cleaned_data['email']
+                'email': form.cleaned_data['email'],
+                'address': form.cleaned_data['address']
             }
             return JsonResponse({'success': True, 'data': data})
         else:

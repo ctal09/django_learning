@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .formfil{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        body{
+            background-color: rgb(203, 170, 126);
+        }
+        form{
+            border: 2px white solid;
+            border-radius: 7px;
+            padding: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h2>Add User </h2>
+      
+    </div>
+    <div class="formfil">
+        <form method="POST" enctype="multipart/form-data" onsubmit="save(event)">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="firstname" class="form-label">First Name</label>
+        <input type="text" class="form-control" id="firstname" name="first_name" ">
+    </div>
+    <div class="mb-3">
+        <label for="lastname" class="form-label">Last Name</label>
+        <input type="text" class="form-control" id="lastname" name="last_name" >
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" name="email" >
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+        <label for="dateofbirth" class="form-label">Date of Birth</label>
+        <input type="date" class="form-control" id="dateofbirth" name="dob" >
+    </div>
+    <div class="mb-3">
+        <label for="bio" class="form-label">Bio</label>
+        <input type="textarea" class="form-control" id="dateofbirth" name="bio">
+    </div>
+    <div class="mb-3">
+        <label for="files" class="form-label">Profile Picture</label>
+        <input type="file" class="form-control" id="files" name="profile_picture">
+       
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+    </div>
+    <script>
+        function save(event) {
+            event.preventDefault();
+            event.target.submit();
+            console.log('initiated');
+            console.log(event.target);
+        }
+    </script>
+</body>
+</html>
