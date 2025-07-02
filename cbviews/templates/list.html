@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  </head>
+</head>
+<style>
+.user {
+    display: flex;
+    flex-wrap: wrap; /* allow wrapping if too many cards */
+    gap: 7px;        /* space between cards */
+    justify-content: flex-start; /* align cards to left */
+    margin: 6px 0;
+    padding: 10px;
+}
+.profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;      /* Makes it circular */
+    object-fit: cover;       /* Ensures the image fills the circle */
+    border: 2px solid #ccc;  /* Optional: light border */
+    margin: 10px auto;
+}
+.d-flex{
+  display: flex;
+  margin-top: 10px;
+  justify-content: center;
+}
+
+
+</style>
+<body>
+        
+    <div class="d-flex "><h2>List of Users</h2>
+      <button class="btn btn-success" style="margin-left: 10px;" onclick="create()">  + Add User</button>
+    
+    </div>
+   {% if user %}
+    <div class="user">
+   
+        {% for user in data %}
+       
+        
+              <div class="card" style="width: 18rem;" >
+                     
+              <img src="{{user.profile_picture.url}}" class=" profile-image card-img-top" alt="User Image" onclick="handleClick()" data-user-id="{{user.id}}">
+              <div class="card-body">
+                <h5 class="card-title">{{user.first_name}} {{user.last_name}}</h5>
+                <p class="card-text">{{user.bio}}</p>
+                <button class="btn btn-primary" onclick="editDetail()" data-user-id="{{user.id}}">Edit Detail</button>
+                <form method="POST" action="{{user.id}}/delete/">
+                      {% csrf_token %}
+                <button class="btn btn-danger" onclick="handledelete()" data-user-id="{{user.id}}">Delete</button></form>
+              </div>
+            </div>
+        
+
+        {% endfor %}
+        </div>
+        {% else %}
+            <li>No users found.</li>
+        {% endif %}
+        
+</body>
+
+<script>
+  function handleClick(){
+    // Get the user id from the button's data attribute
+    const userId = event.target.getAttribute('data-user-id');
+    window.location.href = `${userId}/`;
+
+  }
+  function editDetail(){
+    // Get the user id from the button's data attribute
+    const userId = event.target.getAttribute('data-user-id');
+    window.location.href = `${userId}/edit`;
+
+  }
+
+
+  function create(){
+    window.location.href='add';
+  }
+
+  // function handledelete(){
+  //    const userId = event.target.getAttribute('data-user-id');
+  //    window.location.href = `${userId}/delete`;
+
+  
+  // }
+</script>
+
+
+</html>
