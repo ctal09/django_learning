@@ -33,7 +33,9 @@ urlpatterns = [
     path('stat/', statictest),
     path('media/', manage_media),
     path('', include('crud.urls')),
-    path('c/', include('cbviews.urls'))
+    path('c/', include('cbviews.urls')),
+    path('rest/', include('rest.urls')),
+    path('cbapi/', include('cbAPI.urls')),
     
 ]
 
